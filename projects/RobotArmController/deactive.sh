@@ -1,3 +1,4 @@
 #!/bin/sh
 cd `dirname $0`
-rtdeact /localhost/RobotArmController.rtc
+rtdeact /localhost/ArmController0.rtc
+rtdeact /localhost/AdafruitPWMServoDriverEdison0.rtc
