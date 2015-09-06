@@ -143,8 +143,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::moveGripper(JARA
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::moveLinearCartesianAbs(const JARA_ARM::CarPosWithElbow& carPoint)
 {
-	if (m_robotArm->stopFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->stopFalg)RETURNID_NG;
 	m_robotArm->addTargetPos(Vector3d(carPoint.carPos[0][3], carPoint.carPos[1][3], carPoint.carPos[2][3]), atan2(carPoint.carPos[1][0],carPoint.carPos[0][0]), -1);
 	RETURNID_OK;
 }
@@ -156,8 +155,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::moveLinearCartes
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::moveLinearCartesianRel(const JARA_ARM::CarPosWithElbow& carPoint)
 {
-	if (m_robotArm->stopFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->stopFalg)RETURNID_NG;
 
 	Vector3d pos = m_robotArm->calcKinematics();
 	
@@ -192,8 +190,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::movePTPCartesian
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::movePTPJointAbs(const JARA_ARM::JointPos& jointPoints)
 {
-	if (m_robotArm->stopFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->stopFalg)RETURNID_NG;
 
 	double tp[4] = {jointPoints[0], jointPoints[1], jointPoints[2], jointPoints[3]};
 	m_robotArm->addTargetJointPos(tp, -1);
@@ -207,8 +204,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::movePTPJointAbs(
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::movePTPJointRel(const JARA_ARM::JointPos& jointPoints)
 {
-	if (m_robotArm->stopFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->stopFalg)RETURNID_NG;
 
 	double tp[4] = {jointPoints[0]+m_robotArm->theta[0], jointPoints[1]+m_robotArm->theta[1], jointPoints[2]+m_robotArm->theta[2], jointPoints[3]+m_robotArm->theta[3]};
 	m_robotArm->addTargetJointPos(tp, -1);
@@ -232,8 +228,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::openGripper()
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::pause()
 {
-	if (m_robotArm->pauseFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->pauseFalg)RETURNID_NG;
 
 	m_robotArm->pause();
 	RETURNID_OK;
@@ -245,8 +240,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::pause()
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::resume()
 {
-	if (!m_robotArm->pauseFalg)
-		RETURNID_STATUS_ERR;
+	if(!m_robotArm->pauseFalg)RETURNID_NG;
 
 	m_robotArm->resume();
 	RETURNID_OK;
@@ -258,8 +252,7 @@ JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::resume()
 */
 JARA_ARM::RETURN_ID *ManipulatorCommonInterface_MiddleSVC_impl::stop()
 {
-	if (m_robotArm->stopFalg)
-		RETURNID_STATUS_ERR;
+	if(m_robotArm->stopFalg)RETURNID_NG;
 
 	m_robotArm->stop();
 	RETURNID_OK;
