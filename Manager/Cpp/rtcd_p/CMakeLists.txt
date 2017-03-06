@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 
+project (rtcd_p)
+
 find_package(OpenRTM HINTS /usr/lib64/openrtm-1.1/cmake)
 if(${OpenRTM_FOUND})
   MESSAGE(STATUS "OpenRTM configuration Found")
@@ -45,7 +47,7 @@ link_directories(${OPENRTM_LIBRARY_DIRS})
 link_directories(${OMNIORB_LIBRARY_DIRS})
 
 
-project (rtcd_p)
+
 
 add_executable (rtcd_p rtcd_p.cpp FileStreamFunc.cpp LoadRTCs.cpp)
 target_link_libraries(rtcd_p ${OPENRTM_LIBRARIES})
